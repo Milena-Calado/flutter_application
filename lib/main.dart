@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordController.text;
 
     // verificação de login
-    if (username == 'Milena' && password == '12345') {
+    if (username == 'admin' && password == 'admin') {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
