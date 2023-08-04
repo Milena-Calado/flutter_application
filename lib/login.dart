@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application/main.dart';
 
@@ -7,7 +6,7 @@ class HomePage extends StatelessWidget {
 
   const HomePage({Key? key, required this.username}) : super(key: key);
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -21,11 +20,20 @@ class HomePage extends StatelessWidget {
                 builder: (context) => const LoginPage(),
               ),
             );
-          }, 
+          },
         ),
       ),
-      body: const Center(
-        child: Text('Página Inicial após o Login'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/construcao.png', // Caminho da imagem
+              width: 300, // Largura da imagem
+              height: 300, // Altura da imagem
+            ),
+          ],
+        ),
       ),
     );
   }

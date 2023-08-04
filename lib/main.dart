@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Farmacia HC',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.lightGreen,
       ),
       home: const LoginPage(), // Alterando para a página de login
     );
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Farmacia HC'),
       ),
       body: Center(
         child: Column(
@@ -92,20 +92,36 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            TextFormField(
-              controller: _usernameController,
-              decoration: const InputDecoration(
-                labelText: 'Username',
-                prefixIcon: Icon(Icons.person),
+            Container(
+              constraints: const BoxConstraints(
+                  maxWidth: 400), // Defina a largura máxima desejada
+              child: TextFormField(
+                controller: _usernameController,
+                style: const TextStyle(
+                    fontSize: 18), // Defina o tamanho da fonte desejado
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                  prefixIcon: Icon(Icons.person),
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 20), // Ajuste o espaçamento interno
+                ),
               ),
             ),
-            const SizedBox(height: 16),
-            TextFormField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                prefixIcon: Icon(Icons.lock),
+            Container(
+              constraints: const BoxConstraints(
+                  maxWidth: 400), // Defina a largura máxima desejada
+              child: TextFormField(
+                controller: _passwordController,
+                style: const TextStyle(
+                    fontSize: 18), // Defina o tamanho da fonte desejado
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  prefixIcon: Icon(Icons.lock),
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 16,
+                      horizontal: 20), // Ajuste o espaçamento interno
+                ),
               ),
             ),
             const SizedBox(height: 24),
