@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/main.dart';
+import 'home.dart';
 
 class HomePage extends StatelessWidget {
   final String username;
