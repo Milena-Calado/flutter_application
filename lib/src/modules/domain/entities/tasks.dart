@@ -1,6 +1,6 @@
 class Tasks {
   int id;
-  String name;
+  late String name;
   String description;
   String date;
   String time;
@@ -12,16 +12,18 @@ class Tasks {
     required this.description,
     required this.date,
     required this.time,
-    required this.status, required title,
+    required this.status, 
   });
 
-  Tasks.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    description = json['description'];
-    date = json['date'];
-    time = json['time'];
-    status = json['status'];
+  factory Tasks.fromJson(Map<String, dynamic> json) {
+    return Tasks(
+      id: json['id'],
+      name: json['name'],
+      description: json['description'],
+      date: json['date'],
+      time: json['time'],
+      status: json['status'],
+    );
   }
 
   Map<String, dynamic> toJson() {
