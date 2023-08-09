@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/modules/presenter/pages/register.dart';
 
-import 'login.dart';
+import 'user.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -109,8 +109,10 @@ class _LoginPageState extends State<LoginPage> {
                   maxWidth: 400), // Defina a largura máxima desejada
               child: TextFormField(
                 controller: _passwordController,
+                obscureText: true,
                 style: const TextStyle(
                     fontSize: 18), // Defina o tamanho da fonte desejado
+
                 decoration: const InputDecoration(
                   labelText: 'Password',
                   prefixIcon: Icon(Icons.lock),

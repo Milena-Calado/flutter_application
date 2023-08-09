@@ -11,5 +11,5 @@ class ArgumentErrorLoginException extends LoginException {
 }
 
 class DataSourceLoginException extends LoginException {
-  const DataSourceLoginException({StackTrace? stackTrace}) : super(message: 'Erro ao acessar o banco de dados', stackTrace: stackTrace);
+  const DataSourceLoginException(String string, StackTrace s, {StackTrace? stackTrace}) : super(message: 'Erro ao acessar o banco de dados', stackTrace: stackTrace);
 }

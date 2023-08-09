@@ -55,6 +55,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 controller: _usernameController,
                 decoration: const InputDecoration(
                   labelText: 'Username',
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -69,6 +71,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'Password',
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -83,6 +87,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'Confirm Password',
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -117,25 +123,25 @@ class _RegistrationPageState extends State<RegistrationPage> {
       // ignore: use_build_context_synchronously
       Navigator.pop(context
           // MaterialPageRoute(
-          //   builder: (context) => LoginPage(),
-          // ),
+          //   builder: (context) => const LoginPage(),
           );
+      // );
     }
   }
 }
 
-// class LoginPage extends StatelessWidget {
-//   const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Login Page'),
-//       ),
-//       body: const Center(
-//         child: Text('Welcome to the Login Page!'),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login Page'),
+      ),
+      body: const Center(
+        child: Text('Welcome to the Login Page!'),
+      ),
+    );
+  }
+}

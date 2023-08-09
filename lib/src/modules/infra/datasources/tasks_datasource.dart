@@ -1,4 +1,3 @@
-abstract class ITasksDataSource {
-  
+abstract class ITasksDataSource {  
   Future<List> getTasks();
 }
