@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/modules/presenter/pages/register.dart';
+import 'package:flutter_application/src/modules/presenter/pages/tasks_tela.dart';
 
 import 'user.dart';
 
@@ -35,11 +36,11 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordController.text;
 
     // verificação de login
-    if (username == 'admin' && password == 'admin') {
+    if (username == '' && password == '') {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(username: username),
+          builder: (context) => const TaskListPage(),
         ),
       );
     } else {
