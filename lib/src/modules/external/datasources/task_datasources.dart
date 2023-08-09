@@ -1,5 +1,7 @@
 import 'package:flutter_application/src/modules/infra/datasources/tasks_datasource.dart';
+// ignore: depend_on_referenced_packages
 import 'package:dio/dio.dart';
+// ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TasksDatasource implements ITasksDataSource {

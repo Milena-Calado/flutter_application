@@ -9,19 +9,11 @@ class UserStore extends ValueNotifier<UserState> {
 
   void error(String message) => value = ErrorUserState(message);
 
-  void initial(List users) => value = UserInitial(users);
-
   void empty() => value = EmptyUserState();
-
-  void update(List users) => value = UserInitial(users);
 
   void clear() => value = EmptyUserState();
 
-  @override
-  void dispose() {
-    value = null;
-    super.dispose();
   }
 
-}
+
 

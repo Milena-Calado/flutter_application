@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart'; // Certifique-se de importar a biblioteca correta
 
 import '../../infra/datasources/register_datasource.dart';

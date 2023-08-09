@@ -1,4 +1,4 @@
-import '../repositories/user_repository.dart';
+import '../../infra/repositories/user_repository.dart';
 
 abstract class GetUser {
   GetUser(Object object);
@@ -15,6 +15,6 @@ class GetUserImpl implements GetUser {
 
   @override
   Future<void> call(String name, String password) async {
-    return await userRepository.user(name, password);
+    return await userRepository.login(name, password);
   }
 }

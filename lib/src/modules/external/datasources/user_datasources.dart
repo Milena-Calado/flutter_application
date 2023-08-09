@@ -1,5 +1,6 @@
 
 import 'package:flutter_application/src/modules/domain/error/errors.dart';
+// ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../infra/datasources/user_datasource.dart';
 
@@ -25,8 +26,8 @@ abstract class UserDatasource implements IUserDataSource {
       await _prefs.setStringList('user', user.cast<String>());
 
       return user;
-    } catch (e) {
-      throw DataSourceLoginException('Failed to fetch user: $e');
+    } catch (e, s) {
+      throw DataSourceLoginException('Failed to fetch user: $e', s);
     }
   }
 }
