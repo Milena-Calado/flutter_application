@@ -2,49 +2,45 @@ import 'package:flutter/material.dart';
 
 import '../../domain/usecases/get_user.dart';
 
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'User Registration App',
+      title: 'Farmacia HC',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lightGreen,
       ),
-      home: const RegisterPage(),
+      home: const LoginPage(), // Alterando para a página de login
     );
   }
 }
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _RegisterPageState createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _passwordConfirmController = TextEditingController();
 
   @override
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
-    _passwordConfirmController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('User Register')),
+      appBar: AppBar(title: const Text('Farmácia HC')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -69,21 +65,19 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(height: 16),
-            TextField(
-              controller: _passwordConfirmController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Confirm Password',
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.lock),
+            ElevatedButton(
+              onPressed: UserRepository.onPressedLogin(
+                _usernameController.text,
+                _passwordController.text,
               ),
+              child: const Text('Login'),
             ),
-            const SizedBox(height: 16),
+             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: UserRepository.onPressedRegister(
                 _usernameController.text,
                 _passwordController.text,
-                _passwordConfirmController.text,
+                _passwordController.text,
               ),
               child: const Text('Register'),
             ),
@@ -93,3 +87,4 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
+

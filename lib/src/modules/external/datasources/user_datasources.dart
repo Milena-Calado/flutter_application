@@ -30,6 +30,9 @@ abstract class UserDatasource implements IUserDataSource {
       throw DataSourceLoginException('Failed to fetch user: $e', s);
     }
   }
+
+  @override
+  authenticate(String username, String password) async {}
 }
 
 class Uno {

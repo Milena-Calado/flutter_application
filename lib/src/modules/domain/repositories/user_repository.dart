@@ -1,5 +1,5 @@
 abstract class IUserRepository {
-  Future<List> user(String name, String password);
+  Future<void> authenticate(String username, String password);
   Future<List> register(String name, String password, String passwordConfirmation);
   Future<List> tasks();
 }

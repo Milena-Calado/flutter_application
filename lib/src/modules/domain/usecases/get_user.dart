@@ -1,20 +1,32 @@
-import '../../infra/repositories/user_repository.dart';
+import '../../external/datasources/user_datasources.dart';
+import '../repositories/user_repository.dart';
 
-abstract class GetUser {
-  GetUser(Object object);
+abstract class UserRepository {
+  UserRepository (Object object);
 
   Future<void> call(String name, String password);
+
+  static onPressedLogin(String text, String text2) {}
+
+  static onPressedRegister(String text, String text2, String text3) {}
 }
+class UserRepositoryImpl implements IUserRepository {
+  final UserDatasource userDataSource;
 
-class GetUserImpl implements GetUser {
-  final UserRepository userRepository;
-
-  GetUserImpl({
-    required this.userRepository,
-  });
+  UserRepositoryImpl(this.userDataSource);
 
   @override
-  Future<void> call(String name, String password) async {
-    return await userRepository.login(name, password);
+  Future<void> authenticate(String username, String password) async {
+    await userDataSource.authenticate(username, password);
   }
-}
+  
+  @override
+  Future<List> register(String name, String password, String passwordConfirmation) {        
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<List> tasks() {
+    throw UnimplementedError();
+  }
+  }

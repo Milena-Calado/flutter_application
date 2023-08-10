@@ -1,12 +1,11 @@
 abstract class IUserDataSource {
-  Future<List> getUsers();
+  Future<void> authenticate(String username, String password);
 
   login(String username, String password) {}
 
-  Future<List<dynamic>> register(String name, String password, String passwordConfirmation) async {
-    // ... lógica de registro ...
+  getUsers() {}
 
-    // Retorne uma lista vazia como um exemplo
-    return [];
+  Future<List<dynamic>> register(String name, String password, String passwordConfirmation) {
+    throw UnimplementedError();
   }
 }
