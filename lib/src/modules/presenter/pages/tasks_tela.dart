@@ -1,24 +1,6 @@
-
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Task List App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const TaskListPage(),
-    );
-  }
-}
+import 'package:flutter_application/src/modules/presenter/pages/tasks_register.dart';
+import 'package:flutter_application/src/modules/presenter/pages/user.dart';
 
 class TaskListPage extends StatefulWidget {
   const TaskListPage({Key? key}) : super(key: key);
@@ -39,7 +21,20 @@ class _TaskListPageState extends State<TaskListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Tasks')),
+      appBar: AppBar(
+        title: const Text('Tasks'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const TaskRegisterPage(),
+              ),
+            );
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

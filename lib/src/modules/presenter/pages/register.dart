@@ -1,24 +1,7 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../domain/usecases/get_user.dart';
-
-
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'User Registration App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const RegisterPage(),
-    );
-  }
-}
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -33,54 +16,62 @@ class _RegisterPageState extends State<RegisterPage> {
   final _passwordController = TextEditingController();
   final _passwordConfirmController = TextEditingController();
 
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    _passwordConfirmController.dispose();
-    super.dispose();
+  void _registerUser(String username, String password, String passwordConfirm) async {
+    if (password != passwordConfirm) {
+      // Passwords don't match, show an error message or dialog
+      return;
+    }
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', username);
+    await prefs.setString('password', password);
+
+    // Registration successful, navigate to the next screen or show a success message
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('User Register')),
+      appBar: AppBar(title: const Text('Registration')),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _usernameController,
-              decoration: const InputDecoration(
-                labelText: 'Username',
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.person),
+          children: [            
+            Image.asset(
+                  'assets/logo_inicial.png',
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                ),
+
+              TextField(
+                controller: _usernameController,
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.lock),
+              TextField(
+                controller: _passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _passwordConfirmController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Confirm Password',
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.lock),
+              TextField(
+                controller: _passwordConfirmController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'Confirm Password',
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
+              const SizedBox(height: 16),            
             ElevatedButton(
-              onPressed: UserRepository.onPressedRegister(
+              onPressed: () => _registerUser(
                 _usernameController.text,
                 _passwordController.text,
                 _passwordConfirmController.text,

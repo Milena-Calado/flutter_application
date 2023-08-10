@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:flutter_application/src/modules/presenter/pages/tasks_tela.dart';
 
 class HomePage extends StatelessWidget {
   final String username;
@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const LoginPage(),
+                builder: (context) => const TaskListPage(),
               ),
             );
           },

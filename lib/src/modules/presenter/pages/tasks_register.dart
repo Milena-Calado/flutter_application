@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/modules/presenter/pages/tasks_tela.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Task List App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const TaskListPage(),
-    );
-  }
-}
 class TaskRegisterPage extends StatefulWidget {
   const TaskRegisterPage({super.key});
 
@@ -47,7 +29,20 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Task Register')),
+      appBar: AppBar(
+        title: const Text('Task Register'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const TaskListPage(),
+              ),
+            );
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -64,41 +59,41 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
             const SizedBox(height: 16),
             TextField(
               controller: _descriptionController,
-              obscureText: true,
+              obscureText: false,
               decoration: const InputDecoration(
                 labelText: 'Description',
                 border: OutlineInputBorder(),
-                icon: Icon(Icons.lock),
+                icon: Icon(Icons.description),
               ),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: _dateController,
-              obscureText: true,
+              obscureText: false,
               decoration: const InputDecoration(
                 labelText: 'Date',
                 border: OutlineInputBorder(),
-                icon: Icon(Icons.lock),
+                icon: Icon(Icons.calendar_today),
               ),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: _timeController,
-              obscureText: true,
+              obscureText: false,
               decoration: const InputDecoration(
                 labelText: 'Time',
                 border: OutlineInputBorder(),
-                icon: Icon(Icons.lock),
+                icon: Icon(Icons.timer),
               ),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: _statusController,
-              obscureText: true,
+              obscureText: false,
               decoration: const InputDecoration(
                 labelText: 'Status',
                 border: OutlineInputBorder(),
-                icon: Icon(Icons.lock),
+                icon: Icon(Icons.stairs),
               ),
             ),
             const SizedBox(height: 16),
