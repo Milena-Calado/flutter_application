@@ -43,7 +43,7 @@ class _TaskListPageState extends State<TaskListPage> {
 
   void _logout() {
     // Implemente a lógica de logout aqui, se necessário
-    Navigator.of(context).pushReplacement(
+    Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => const LoginPage()),
     );
   }

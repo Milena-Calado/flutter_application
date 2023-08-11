@@ -104,7 +104,7 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
                 await prefs.setStringList('tasks', savedTasks);
 
                 // ignore: use_build_context_synchronously
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => TaskListPage(tasks: savedTasks),

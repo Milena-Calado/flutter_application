@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/src/modules/presenter/pages/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../domain/usecases/shared_preference_helper.dart';
 import 'tasks_tela.dart';
 
 class LoginPage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
     // Verificação de login
     if (username == savedUsername && password == savedPassword) {
       // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => const TaskListPage(
@@ -79,20 +78,16 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text('Farmacia HC'),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Align(
-              alignment: Alignment.topCenter,
-              child: ClipPath(
-                child: Image.asset(
-                  'assets/logo_inicial.png',
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  height: MediaQuery.of(context).size.height * 0.4,
-                ),
-              ),
+          children: [
+            Image.asset(
+              'assets/logo_inicial.png',
+              width: MediaQuery.of(context).size.width * 1.0,
+              height: MediaQuery.of(context).size.height * 0.4,
             ),
+
             Container(
               constraints: const BoxConstraints(
                   maxWidth: 400), // Defina a largura máxima desejada
