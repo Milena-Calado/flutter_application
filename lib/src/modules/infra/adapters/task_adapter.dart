@@ -5,7 +5,6 @@ class TasksAdapter {
         id: json['id'],
         description: json['description'],
         date: json['date'],
-        time: json['time'],
         status: json['status'],
         name: '',
       );

@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/src/modules/presenter/pages/tasks_register.dart';
+// ignore: depend_on_referenced_packages
+import 'package:shared_preferences/shared_preferences.dart';
+import '../pages/tasks_register.dart';
+import '../pages/tasks_tela.dart';
 
-class TaskListPage extends StatefulWidget {
-  const TaskListPage({Key? key}) : super(key: key);
+class TaskListPageState extends State<TaskListPage> {
+  List<String> tasks = [];
 
   @override
-  State<TaskListPage> createState() => _TaskListPageState();
-}
+  void initState() {
+    super.initState();
+    _loadTasks();
+  }
 
-class _TaskListPageState extends State<TaskListPage> {
-  List<String> tasks = TaskRegisterPage.tasks; // Obtenha as tasks da classe TaskRegisterPage
+  Future<void> _loadTasks() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? savedTasks = prefs.getStringList('tasks');
+    if (savedTasks != null) {
+      setState(() {
+        tasks = savedTasks;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

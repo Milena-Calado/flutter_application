@@ -3,7 +3,6 @@ class Tasks {
   late String name;
   String description;
   String date;
-  String time;
   int status;
 
   Tasks({
@@ -11,7 +10,6 @@ class Tasks {
     required this.name,
     required this.description,
     required this.date,
-    required this.time,
     required this.status,
   });
 }

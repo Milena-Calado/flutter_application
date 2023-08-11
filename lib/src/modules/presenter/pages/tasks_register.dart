@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/modules/presenter/pages/tasks_tela.dart';
+// ignore: depend_on_referenced_packages
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TaskRegisterPage extends StatefulWidget {
-  const TaskRegisterPage({super.key});
+  static List<String> tasks = [];
+
+  const TaskRegisterPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -13,7 +17,6 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
   final _nameController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _dateController = TextEditingController();
-  final _timeController = TextEditingController();
   final _statusController = TextEditingController();
 
   @override
@@ -21,7 +24,6 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
     _nameController.dispose();
     _descriptionController.dispose();
     _dateController.dispose();
-    _timeController.dispose();
     _statusController.dispose();
     super.dispose();
   }
@@ -78,16 +80,6 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
             ),
             const SizedBox(height: 16),
             TextField(
-              controller: _timeController,
-              obscureText: false,
-              decoration: const InputDecoration(
-                labelText: 'Time',
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.timer),
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
               controller: _statusController,
               obscureText: false,
               decoration: const InputDecoration(
@@ -98,7 +90,19 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                final task = {
+                  'name': _nameController.text,
+                  'description': _descriptionController.text,
+                  'date': _dateController.text,
+                  'status': _statusController.text,
+                };
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                List<String> savedTasks = prefs.getStringList('tasks') ?? [];
+                savedTasks.add(task.toString());
+                await prefs.setStringList('tasks', savedTasks);
+
+                // ignore: use_build_context_synchronously
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
