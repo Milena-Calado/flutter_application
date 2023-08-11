@@ -16,53 +16,52 @@ class _RegisterPageState extends State<RegisterPage> {
   final _passwordController = TextEditingController();
   final _passwordConfirmController = TextEditingController();
 
-void _registerUser(
-    String username, String password, String passwordConfirm) async {
-  if (password != passwordConfirm) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Password Error'),
-        content: const Text('Passwords do not match. Please try again.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  } else {
-    // Save username and password
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('username', username);
-    await prefs.setString('password', password);
-
-    // Show registration success dialog
-    // ignore: use_build_context_synchronously
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Registration Successful'),
-          content: const Text('You have been registered successfully.'),
-          actions: <Widget>[
+  void _registerUser(
+      String username, String password, String passwordConfirm) async {
+    if (password != passwordConfirm) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Password Error'),
+          content: const Text('Passwords do not match. Please try again.'),
+          actions: [
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                ); // Navigate back to LoginPage
-              },
+              onPressed: () => Navigator.pop(context),
               child: const Text('OK'),
             ),
           ],
-        );
-      },
-    );
-  }
-}
+        ),
+      );
+    } else {
+      // Save username and password
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('username', username);
+      await prefs.setString('password', password);
 
+      // Show registration success dialog
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Registration Successful'),
+            content: const Text('You have been registered successfully.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  ); // Navigate back to LoginPage
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +131,7 @@ void _registerUser(
               onPressed: () => _registerUser(
                 _usernameController.text,
                 _passwordController.text,
-                _passwordConfirmController.text,                
+                _passwordConfirmController.text,
               ),
               child: const Text('Register'),
             ),
