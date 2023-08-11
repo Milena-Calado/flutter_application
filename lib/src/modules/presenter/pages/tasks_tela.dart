@@ -104,7 +104,9 @@ class _TaskListPageState extends State<TaskListPage> {
               },
             ),
             onTap: () {
-              _showTaskDetails(tasks[i]);
+              _showTaskDetails(tasks[i]
+                  .replaceAll(",", "\n")
+                  .substring(1, tasks[i].length - 1));
             },
           );
         },
