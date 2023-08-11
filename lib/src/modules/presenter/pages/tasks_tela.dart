@@ -19,7 +19,6 @@ class _TaskListPageState extends State<TaskListPage> {
     super.initState();
     _loadTasks();
   }
-  
 
   Future<void> _loadTasks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -37,7 +36,8 @@ class _TaskListPageState extends State<TaskListPage> {
     savedTasks.removeAt(index);
     await prefs.setStringList('tasks', savedTasks);
     setState(() {
-      tasks = savedTasks; // Atualiza a lista de tasks na mesma hora após remover a task
+      tasks =
+          savedTasks; // Atualiza a lista de tasks na mesma hora após remover a task
     });
   }
 
@@ -89,18 +89,22 @@ class _TaskListPageState extends State<TaskListPage> {
       ),
       body: ListView.builder(
         itemCount: tasks.length,
-        itemBuilder: (context, index) {
+        itemBuilder: (context, i) {
           return ListTile(
             leading: const Icon(Icons.task),
-            title: Text(tasks[index]),
+            title: Text(tasks[i]
+                .split(',')[0]
+                .toString()
+                .replaceAll('[', '')
+                .substring(6)),
             trailing: IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
-                _removeTask(index);
+                _removeTask(i);
               },
             ),
             onTap: () {
-              _showTaskDetails(tasks[index]);
+              _showTaskDetails(tasks[i]);
             },
           );
         },

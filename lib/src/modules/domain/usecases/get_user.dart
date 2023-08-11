@@ -26,7 +26,7 @@ class UserRepositoryImpl implements IUserRepository {
   }
   
   @override
-  Future<List> tasks() {
+  Future<List> tasks(String name, String description, String date, int status) {
     throw UnimplementedError();
   }
   }

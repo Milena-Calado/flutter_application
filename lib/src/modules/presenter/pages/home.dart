@@ -67,11 +67,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _clearData() async {
-    await SharedPreferencesHelper
-        .clearTasks(); // Chama o método para limpar os dados
-    // Recarrega a lista após limpar os dados
-  }
+  // void _clearData() async {
+  //   await SharedPreferencesHelper
+  //       .clearTasks(); // Chama o método para limpar os dados
+  //   // Recarrega a lista após limpar os dados
+  // }
 
   @override
   Widget build(BuildContext context) {
