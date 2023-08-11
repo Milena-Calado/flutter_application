@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/src/modules/presenter/pages/tasks_register.dart';
 // ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'home.dart';
 
 class TaskListPage extends StatefulWidget {
-  final List<String> tasks;
-
-  const TaskListPage({Key? key, required this.tasks}) : super(key: key);
+  const TaskListPage({Key? key, required List tasks}) : super(key: key);
 
   @override
   State<TaskListPage> createState() => _TaskListPageState();
@@ -38,7 +35,9 @@ class _TaskListPageState extends State<TaskListPage> {
     List<String> savedTasks = prefs.getStringList('tasks') ?? [];
     savedTasks.removeAt(index);
     await prefs.setStringList('tasks', savedTasks);
-    _loadTasks(); // Recarrega a lista após remover a task
+    setState(() {
+      tasks = savedTasks; // Atualiza a lista de tasks na mesma hora após remover a task
+    });
   }
 
   void _logout() {
@@ -48,10 +47,11 @@ class _TaskListPageState extends State<TaskListPage> {
     );
   }
 
-  void _addTask() {
-    Navigator.of(context).push(
+  void _addTask() async {
+    await Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => const TaskRegisterPage()),
     );
+    _loadTasks(); // Recarrega a lista após adicionar uma nova task
   }
 
   void _showTaskDetails(String taskName) {
@@ -87,11 +87,11 @@ class _TaskListPageState extends State<TaskListPage> {
         ],
       ),
       body: ListView.builder(
-        itemCount: widget.tasks.length,
+        itemCount: tasks.length,
         itemBuilder: (context, index) {
           return ListTile(
             leading: const Icon(Icons.task),
-            title: Text(widget.tasks[index]),
+            title: Text(tasks[index]),
             trailing: IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
@@ -99,7 +99,7 @@ class _TaskListPageState extends State<TaskListPage> {
               },
             ),
             onTap: () {
-              _showTaskDetails(widget.tasks[index]);
+              _showTaskDetails(tasks[index]);
             },
           );
         },
