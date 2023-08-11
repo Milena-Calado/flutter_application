@@ -11,6 +11,7 @@ class TaskRegisterPage extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _TaskRegisterPageState createState() => _TaskRegisterPageState();
+
 }
 
 class _TaskRegisterPageState extends State<TaskRegisterPage> {
@@ -39,7 +40,7 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const TaskListPage(),
+                builder: (context) => const TaskListPage(tasks: [],),
               ),
             );
           },
@@ -106,7 +107,7 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TaskListPage(),
+                    builder: (context) => TaskListPage(tasks: savedTasks),
                   ),
                 );
               },

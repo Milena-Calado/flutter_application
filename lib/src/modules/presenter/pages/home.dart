@@ -3,8 +3,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application/src/modules/presenter/pages/register.dart';
-import 'package:flutter_application/src/modules/presenter/pages/tasks_register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'tasks_tela.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -33,8 +34,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const TaskRegisterPage(),
-        ),
+          builder: (context) => const TaskListPage(tasks: [],),        ),
       );
     } else {
       // ignore: use_build_context_synchronously
