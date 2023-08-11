@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/src/modules/presenter/pages/tasks_register.dart';
 // ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
-import 'home.dart';
+import 'login.dart';
 
 class TaskListPage extends StatefulWidget {
   const TaskListPage({Key? key, required List tasks}) : super(key: key);
@@ -42,8 +42,10 @@ class _TaskListPageState extends State<TaskListPage> {
   }
 
   void _logout() {
-    // Implemente a lógica de logout aqui, se necessário
-    Navigator.of(context).push(
+    Navigator.of(context).popUntil((route) => route.isFirst);
+
+    // Navega para a tela de login
+    Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => const LoginPage()),
     );
   }

@@ -11,7 +11,6 @@ class TaskRegisterPage extends StatefulWidget {
   @override
   // ignore: library_private_types_in_public_api
   _TaskRegisterPageState createState() => _TaskRegisterPageState();
-
 }
 
 class _TaskRegisterPageState extends State<TaskRegisterPage> {
@@ -37,10 +36,12 @@ class _TaskRegisterPageState extends State<TaskRegisterPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const TaskListPage(tasks: [],),
+                builder: (context) => const TaskListPage(
+                  tasks: [],
+                ),
               ),
             );
           },
